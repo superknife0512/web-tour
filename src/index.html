@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="./sass/main.css">
+  <link rel="icon" href="./images/logo.ico" type="image/x-icon" />
   <title>Document</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
     <div class="hero__header">
       <div class="myContainer hero__header-content">
         <div class="hero__left">
-          <img src="./images/logo.jpg" alt="logo">
+          <img src="./images/logo.png" alt="logo">
         </div>
         <ul class="hero__right">
           <li class="hero__item">
@@ -40,23 +41,89 @@
       <h3 class="hero__desc">
         Now, you can take your tour with the best discount up to 60%.
       </h3>
-      <button class="btn--join mt-4">Join now!!</button>
+      <button class="btn__join--primary mt-4">Join now!!</button>
     </div>
   </div>
 
   <div class="about myContainer">
     <div class="about__left">
-      <h3>Why Choose Us?</h3>
+      <h3 class="primary-heading">Why Choose Us?</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. At qui quaerat animi illo tenetur facilis alias ut sed, obcaecati aliquam necessitatibus tempora mollitia? Sequi, voluptatem tenetur aspernatur vero deserunt quia?<br>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, excepturi voluptatem repellat reprehenderit itaque temporibus minima eius inventore earum sint at quae suscipit! Tempore, necessitatibus aut hic assumenda iste alias.br
       </p>
+      <a href="#" class="btn__link mt-4">Learn more <span> &rarr; </span></a>
     </div>
     <div class="about__right">
       <img src="./images/about.jpg" alt="about">
     </div>
-
+    
   </div>
+
+  <div class="myContainer">
+    <hr>
+  </div>
+
+  <div class="tours" id="tours">
+    <div class="myContainer">
+      <h3 class="primary-heading">Choice your awesome tour!</h3>
+      <p>Today the group will travel from Delhi to Agra. Once the capital of India, Agra boasts monuments
+        that epitomize the high point of Mughal architecture. This afternoon you will visit the Agra Fort
+        with its colossal walls and moat. The fort contains wonderful palaces in red sandstone and white
+        marble.</p>
+      <div class="tours__display">
+        <div class="tours__card" v-for="tour in tours">
+          <div class="tours__heading">
+              <h4 class="tours__title"> {{ tour.title }} </h4>
+              <p class="tours__desc"> {{ tour.desc }} </p>
+          </div>
+          <img :src="tour.img" :alt="tour.title" class="tours__img">
+          <div class="tours__detail">
+            <h4>Discount up to {{ tour.discount }}%</h4>
+            <h4>With price only: ${{ tour.price }} </h4>
+            <p>Tour for {{ tour.people }} people </p>
+            <p>With {{ tour.duration }} days and {{ tour.duration - 1 }} nights </p>
+            <button class="btn__join--secondary mt-4">Register now !</button>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="btn__link">Learn more <span> &rarr; </span></a>
+    </div>
+  </div>
+
+  <div class="register">
+    <div class="register__bg">
+    </div>
+    <div class="register__content">
+      <div class="d-flex mb-4">
+          <img src="./images/sent-mail.png" height="40" alt="mail">
+          <h4 class="ml-2"> - Do you want to ask anythings?</h4>
+      </div>
+      <div action="#">
+        <div class="register__group">
+          <label for="a">Your email: </label>
+          <input type="text">
+        </div>
+        <div class="register__group">
+          <label for="a">Your email: </label>
+          <textarea name="cax" id="cax" rows="4"></textarea>
+        </div>
+        <button class="btn__join--primary">Submit letter!</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="myContainer">
+      <img src="./images/logo.png" alt="logo">
+      <h3>Author: Leesin</h3>
+      <h4>Phone Number: 0959 567 889</h4>
+      <h4>Email: Leesin@yasuo.com</h4>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="./app.js"></script>
+  <!-- <a href="https://pngimage.net/tourism-logo-png/" title="Image from PNG Image"><img src="https://pngimage.net/wp-content/uploads/2018/06/tourism-logo-png.png" alt="tourism logo png"></a> -->
 </body>
 </html>

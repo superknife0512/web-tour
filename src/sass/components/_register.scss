@@ -1,0 +1,50 @@
+
+.register {
+  position: relative;
+  
+  // overflow: hidden;
+  &__bg {
+    height: 35rem;
+    width: 100%;
+    background-image: url('../images/footerBg.jpg');
+    background-size: cover;
+    background-position: top;
+    filter: blur(7px);
+    padding: 3rem;
+    
+  }
+
+  &__content {
+    background-color: $primary-color;
+    width: 100%;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 1179px;
+    transform: translate(-50%, -50%);
+    color: white;
+    box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.5);
+    border-top: 8px solid white;
+  }
+
+  &__group {
+    margin-bottom: 1.3rem;
+    label {
+      font-weight: 500;
+    }
+    input {
+      width: 100%;
+      border: none;
+      height: 2rem;
+      padding: .5rem;
+      border-radius: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      border-radius: 5px;
+      padding: .5rem;
+    }
+  }
+}

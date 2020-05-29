@@ -1,36 +1,82 @@
+%btn__join {
+  padding: .8rem 2.3rem;
+  border-radius: 50rem;
+  border: none;
+
+  text-transform: uppercase;
+  font-weight: 700;
+  position: relative;
+  transition: all .2s;      
+
+  &:hover {
+    transform: translateY(-.5rem);
+  }  
+
+  &:hover::before {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+%btn_entity {
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: 50rem;
+  position: absolute;
+  top: 0rem;
+  left: 0;
+  z-index: -1;
+  transition: all .5s;
+}
 
 .btn {
-
-  &--join {
-    padding: .8rem 2.3rem;
-    border-radius: 50rem;
-    border: none;
-
-    text-transform: uppercase;
-    font-weight: 700;
-    position: relative;
-    transition: all .2s;
-
-    &::before {
-      content: "";
-      height: 100%;
-      width: 100%;
+  &__join { 
+    &--primary{
+      @extend %btn__join;
       background-color: #fff;
-      border-radius: 50rem;
-      position: absolute;
-      top: 0rem;
-      left: 0;
-      z-index: -1;
-      transition: all .7s;
+      
+      &::before {
+        @extend %btn_entity;
+        background-color: #fff;
+      }
+    }
+
+    &--secondary{
+      @extend %btn__join;
+      color: white;
+      background-color: $primary-color;
+      
+      &::before {
+        @extend %btn_entity;
+        color: white;
+        background-color:$primary-color;
+      }
+    }
+
+  }
+}
+
+.btn {
+  &__link {
+    color: $primary-color;
+    transition: all .3s;
+    font-weight: 500;
+    font-size: 1.3rem;
+
+    span {
+      transition: all .3s;
     }
 
     &:hover {
-      transform: translateY(-.5rem);
-    }
+      padding: .5rem .8rem;
+      color: white;
+      background-color: $primary-color;
+      text-decoration: none;
 
-    &:hover::before {
-      transform: scale(1.5);
-      opacity: 0;
+      span {
+        margin-left: .8rem;
+      }
     }
   }
 }
