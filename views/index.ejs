@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="./stylesheets/sass/main.css">
-  <link rel="icon" href="images/logo.ico" type="image/x-icon" />
-  <title>Document</title>
-</head>
+<%- include('includes/heading', {title: title}) %>
+
 <body>
   <div class="hero">
     <div class="hero__header">
@@ -28,8 +20,8 @@
           <li class="hero__item">
             <a href="#">Booking</a>
           </li>
-          <li class="hero__item">
-            <a href="#">Your account</a>
+          <li class="hero__item hero__item--signin">
+            <a href="/admin">Your account</a>
           </li>
         </ul>
       </div>
@@ -112,18 +104,40 @@
       </div>
     </div>
   </div>
-
-  <footer class="footer">
-    <div class="myContainer">
-      <img src="images/logo.png" alt="logo">
-      <h3>Author: Leesin</h3>
-      <h4>Phone Number: 0959 567 889</h4>
-      <h4>Email: Leesin@yasuo.com</h4>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="javascripts/index.js"></script>
-  <!-- <a href="https://pngimage.net/tourism-logo-png/" title="Image from PNG Image"><img src="https://pngimage.net/wp-content/uploads/2018/06/tourism-logo-png.png" alt="tourism logo png"></a> -->
-</body>
-</html>
+<script>
+  new Vue ({ 
+  el: '#tours',
+  data: {
+    tours: [
+      {
+        title: 'Da Nang Tour',
+        desc: 'Awesome tour from Quang Nam to Danang and more beautiful place',
+        discount: 45,
+        price: 300,
+        people: 2,
+        duration: 3,
+        img: './images/beach.jpg'
+      },
+      {
+        title: 'Hoi An Tour',
+        desc: 'Enjoy the ancient atmosphere at Hoi An with you awesome family',
+        discount: 40,
+        price: 350,
+        people: 3,
+        duration: 2,
+        img: './images/hoian.jpg'
+      },
+      {
+        title: 'Phong Nha Tour',
+        desc: 'Discover the deepest cave with our professional team',
+        discount: 30,
+        price: 540,
+        people: 2,
+        duration: 7,
+        img: './images/tamcoc.jpg'
+      },
+    ]
+  }
+})
+</script>
+  <%- include('includes/footing.ejs') %>

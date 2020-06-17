@@ -39,12 +39,21 @@
       height: 2rem;
       padding: .5rem;
       border-radius: 5px;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
     }
 
     textarea {
       width: 100%;
       border-radius: 5px;
       padding: .5rem;
+      &:focus {
+        border: none;
+        outline: none;
+      }
     }
   }
 }

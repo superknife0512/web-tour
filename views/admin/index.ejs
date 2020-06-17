@@ -1,0 +1,63 @@
+<%- include('../includes/heading', {title: title}) %>
+  
+  <div class="container">
+    <div class="admin" id="register">
+      <h3> Admin Page: {{ isSignup ? 'Sign up' : 'Sign in' }} </h3>
+      <div class="alert alert-warning" v-if="!isMatch">Confirm password and password should be the same</div>
+      <hr>
+      <form action="/admin/signup" method="POST" id="signup" v-if="isSignup">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" v-model="password" required>
+        </div>
+        <div class="form-group">
+          <label for="cfp">Confirm Password</label>
+          <input type="password" class="form-control" name="cfp" v-model="cfp">
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-primary mr-4">Sign up</button>
+          <a href="#" @click="isSignup = !isSignup"> Have an account? sign in now </a>
+        </div>
+      </form>
+      <form action="/admin/signin" method="POST" id="signin" v-if="!isSignup">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" required>
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-primary mr-4">Sign in</button>
+          <a href="#" @click="isSignup = !isSignup"> Don't have an account? sign up now </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue ({
+      el: '#register',
+      data: {
+        isSignup: true,
+        password: '',
+        cfp: '',
+      },
+      computed: {
+        isMatch() {
+          return this.password === this.cfp
+        }
+      }
+    })
+  </script>
+
+<%- include('../includes/footing.ejs') %>
