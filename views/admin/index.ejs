@@ -4,6 +4,9 @@
     <div class="admin" id="register">
       <h3> Admin Page: {{ isSignup ? 'Sign up' : 'Sign in' }} </h3>
       <div class="alert alert-warning" v-if="!isMatch">Confirm password and password should be the same</div>
+      <% if (warning) { %>
+        <div class="alert alert-danger">This account has been existed</div>
+      <% } %>
       <hr>
       <form action="/admin/signup" method="POST" id="signup" v-if="isSignup">
         <div class="form-group">
