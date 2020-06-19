@@ -10,9 +10,7 @@ exports.signupAdmin = async (req, res, next) => {
   const password = reqBody.password;
 
   const hashedPass = await bcrypt.hash(password, 10);
-
   const existedOne = await adminModel.findOne({email});
-
   console.log(existedOne);
 
   if (existedOne) {
@@ -33,18 +31,25 @@ exports.signupAdmin = async (req, res, next) => {
 exports.signinAdmin = async (req,res,next) => {
   const email = req.body.email;
   const password = req.body.password;
-
   const existedOne = await adminModel.findOne({email});
-
   if (!existedOne) {
     return res.redirect('/admin')
   }
-
   if (!bcrypt.compareSync(password, existedOne.password)) {
     return res.redirect('/admin')
   }
-
   req.session.user = existedOne
   await req.session.save();
   res.redirect('/admin/product');
+}
+
+exports.logout = async (req,res,next) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.log('Error: ' + err);
+      next(err)
+    } else {
+      res.redirect('/admin');
+    }
+  })
 }

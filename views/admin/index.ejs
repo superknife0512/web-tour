@@ -30,7 +30,12 @@
           <a href="#" @click="isSignup = !isSignup"> Have an account? sign in now </a>
         </div>
       </form>
-      <form action="/admin/signin" method="POST" id="signin" v-if="!isSignup">
+
+      <form action="/admin/signin"
+            method="POST" 
+            id="signin" 
+            v-if="!isSignup"
+            style="margin-bottom: 9rem;">
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" class="form-control" name="email" required>
@@ -41,7 +46,8 @@
         </div>
         <div class="d-flex align-items-center">
           <button class="btn btn-primary mr-4">Sign in</button>
-          <a href="#" @click="isSignup = !isSignup"> Don't have an account? sign up now </a>
+          <a href="#" @click="isSignup = !isSignup" style="margin-right: auto;"> Don't have an account? sign up now </a>
+          <a href="/admin/reset" class="btn btn-danger">Reset your password</a>          
         </div>
       </form>
     </div>

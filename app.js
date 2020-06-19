@@ -13,7 +13,8 @@ const MongoStore = require('connect-mongo')(session);
 
 const store = new MongoStore({
   mongooseConnection: mongoose.connection,
-  dbName: 'sessions'
+  dbName: 'sessions',
+  stringify: false
 })
 
 const app = express();
@@ -36,6 +37,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', express.static(path.join(__dirname, 'public')));
+app.use('/admin/editTour', express.static(path.join(__dirname, 'public')));
+app.use('/admin/userUpload', express.static(path.join(__dirname, 'userUpload')));
+app.use('/admin/editTour/userUpload', express.static(path.join(__dirname, 'userUpload')));
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);

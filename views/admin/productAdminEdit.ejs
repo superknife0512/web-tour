@@ -1,0 +1,78 @@
+<%- include('../includes/heading', {title: title}) %>
+
+<%- include('../includes/adminHeading', {user: user}) %>
+
+<div class="container">
+  <div class="admin-prod" style="margin: 5rem 0">
+    <div class="d-flex">
+      <h3 class="mr-4"><%= isEdit ? 'Edit Your Tours' : 'Add Your Tours' %> </h3>      
+    </div>
+    <hr>
+    <form 
+      class="admin-prod__display" 
+      method="POST" 
+      action="<%= isEdit ? '/admin/editTour/' + tour._id : '/admin/newTour' %>"
+      enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title" style="text-transform: capitalize ;">title</label>
+        <input 
+          value="<%= !isEdit ? '' : tour.title %>"
+          type="text" 
+          class="form-control" 
+          name="title">
+      </div>
+      <div class="form-group">
+        <label for="desc" style="text-transform: capitalize ;">desc</label>
+        <input 
+          value="<%= !isEdit ? '' : tour.desc %>"
+          type="text" 
+          class="form-control" 
+          name="desc">
+      </div>
+      <div class="form-group">
+        <label for="discount" style="text-transform: capitalize ;">discount</label>
+        <input 
+          value="<%= !isEdit ? '' : tour.discount %>"
+          type="text" 
+          class="form-control" 
+          name="discount">
+      </div>
+      <div class="form-group">
+        <label for="price" style="text-transform: capitalize ;">price</label>
+        <input 
+          value="<%= !isEdit ? '' : tour.price %>"
+          type="text" 
+          class="form-control" 
+          name="price">
+      </div>
+      <div class="form-group">
+        <label for="people" style="text-transform: capitalize ;">people</label>
+        <input 
+          value="<%= !isEdit ? '' : tour.people %>"
+          type="text" 
+          class="form-control" 
+          name="people">
+      </div>
+      <div class="form-group">
+        <label for="duration" style="text-transform: capitalize ;">duration</label>
+        <input 
+          value="<%= !isEdit ? '' : tour.duration %>"
+          type="text" 
+          class="form-control" 
+          name="duration">
+      </div>
+      <div class="form-group">
+        <label for="img" style="text-transform: capitalize ;">img</label>
+        <input type="file" accept="image/*" class="form-control" name="img">
+        <% if (isEdit) { %>
+          <img src="<%= tour.img %>" alt="a Tour" width="300" class="mt-4">
+          <p>Old image</p>
+        <% } %>
+      </div>
+      <button class="btn btn-primary"><%= isEdit ? 'Edit it' : 'Add new' %></button>
+    </form>
+  </div>
+</div>
+
+
+<%- include('../includes/footing.ejs') %>
