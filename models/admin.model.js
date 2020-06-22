@@ -4,16 +4,24 @@ const Schema = mongoose.Schema;
 const adminSchema = new Schema({
   name: {
     type: String,
-    default: true
+    required: true
   },
   email: {
     type: String,
-    default: true
+    required: true
   },
   password: {
     type: String,
-    default: true
+    required: true
   },
+  resetCode: {
+    type: String,
+    default: ''
+  },
+  expire: {
+    type: Date,
+    default: ''
+  }
 });
 
 module.exports = mongoose.model('admins', adminSchema)

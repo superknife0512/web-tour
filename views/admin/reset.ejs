@@ -1,0 +1,123 @@
+<%- include('../includes/heading', {title: title}) %>
+  
+<div class="container mt-8 mb-8" style="padding-top: 6rem;" id="reset">
+  <h3>Reset Your Password</h3>
+  <div class="alert alert-primary" v-if="page == 'enter'"> Your email has been sent! please check SPAM if you can't see it </div>
+  <hr>
+  <form action="#"
+        method="POST" 
+        style="margin-bottom: 9rem;"
+        v-if="page == ''"
+        >
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" v-model="email" required>
+    </div>
+    <div class="d-flex align-items-center">
+      <button class="btn btn-primary mr-4" 
+              @click.prevent="submitSendEmail()">Send Email!</button>     
+    </div>
+  </form>
+
+  <form action="#"
+        method="POST" 
+        style="margin-bottom: 9rem;"
+        v-if="page == 'enter'"
+        >        
+    <div class="alert alert-danger" v-if ="error"> {{ error }} </div>
+    <div class="form-group">
+      <label for="code">Your CODE:</label>
+      <input type="text" class="form-control" name="code" v-model="code" required>
+    </div>
+    <div class="d-flex align-items-center">
+      <button class="btn btn-warning mr-4" 
+              @click.prevent="submitVerifyCode()">Verify Code!</button>     
+    </div>
+  </form>
+
+  <form action="#"
+        method="POST" 
+        style="margin-bottom: 9rem;"
+        v-if="page == 'password'"
+        >
+    <div class="alert alert-danger" v-if="passwordError"> {{ passwordError }} </div>
+    <div class="form-group">
+      <label for="password">New Password</label>
+      <input type="password" class="form-control" name="password" v-model="password" required>
+    </div>
+    <div class="form-group">
+      <label for="rePassword">Re-enter New Password</label>
+      <input type="password" class="form-control" name="rePassword" v-model="rePassword" required>
+    </div>
+    <div class="d-flex align-items-center">
+      <button class="btn btn-success mr-4" 
+              @click.prevent="updatePassword()">Update Password!</button>     
+    </div>
+  </form>
+</div>
+
+  <script>
+    new Vue({
+      el: '#reset',
+      data: {
+        email: '',
+        page: '',
+        code: '',
+        password: '',
+        rePassword: '',
+        error: '',
+        passwordError: ''
+      },
+      methods: {
+        submitSendEmail(userId) {
+          console.log('SENDING EMAIL...');
+          fetch(`/admin/reset/${this.email}`, {method: 'POST'})
+            .then(res => {
+              if (res.status = 200) {
+                console.log('DONE');
+                this.page = 'enter'
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        },
+
+        submitVerifyCode() {
+          console.log('CHECKING CODE...');
+          axios.post(`/admin/check-code`, {
+              resetCode: this.code,
+              email: this.email
+          })
+          .then(res => {
+            console.log(res);
+            if (res.status === 200) {
+              console.log('DONE');
+              this.page = 'password'
+            } else {
+              this.error = res.data.msg
+            }
+          })
+        },
+
+        updatePassword() {
+          if (this.password !== this.rePassword) {
+            return this.passwordError = 'password and confirm password must be the same'
+          }
+          axios.post('/admin/updatePassword', {
+            email: this.email,
+            password: this.password
+          }).then(res => {
+            if (res.status === 200) {
+              window.location.href = '/admin'
+            } else {
+              alert('Some things when wrong')
+            }
+          })
+        }
+      }
+    })
+  </script>
+
+
+<%- include('../includes/footing.ejs') %>

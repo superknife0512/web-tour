@@ -21,10 +21,15 @@ const upload = multer({ storage: storage })
 router.post('/signin', authCtrl.signinAdmin);
 router.post('/signup', authCtrl.signupAdmin);
 router.post('/logout', authCtrl.logout);
+router.post('/reset/:email', authCtrl.postReset)
+router.post('/check-code', authCtrl.checkResetCode)
+router.post('/updatePassword', authCtrl.updatePassword)
 router.post('/newTour', authProtector, upload.single('img'), adminCtrl.postCreateTour)
 router.post('/editTour/:id', authProtector, upload.single('img'), adminCtrl.postEditTour)
+router.post('/deleteTour/:id', authProtector, adminCtrl.postDeleteTour)
 
 router.get('/', adminCtrl.getAdmin);
+router.get('/reset', authCtrl.getReset)
 router.get('/product', authProtector ,adminCtrl.getProductPage)
 router.get('/newTour', authProtector ,adminCtrl.getCreateTour)
 router.get('/editTour/:id', authProtector ,adminCtrl.getEditTour)

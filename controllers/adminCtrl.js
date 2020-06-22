@@ -103,3 +103,10 @@ exports.postEditTour = async (req,res,next) => {
   })
   return res.redirect('/admin/product')
 }
+
+exports.postDeleteTour = async (req,res,next) => {
+  const id = req.params.id;
+  const oldTours = await Tour.findByIdAndDelete({_id: id});
+  removeFile(oldTours.img);
+  res.status(200).json({msg: 'DONE'})
+}

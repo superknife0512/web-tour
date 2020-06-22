@@ -42,11 +42,14 @@
     el: '#adminTours',
     methods: {
       deleteConfirm(tourId) {
-        const isDelete = confirm(`Are you sure to delete this id ${tourId}`)
+        const isDelete = confirm(`Are you sure to delete this product!!!`)
         if (isDelete) {
-          fetch(`/admin/deleteProduct/${tourId}`) 
+          fetch(`/admin/deleteTour/${tourId}`, {method: 'POST'}) 
             .then(res => {
-              window.location.reload()
+              if (res.status == 200) {
+                console.log('Delete done');
+                window.location.reload()
+              }
             })
             .catch(err => {
               console.log(err);
