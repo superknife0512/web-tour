@@ -3,14 +3,14 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'outlook',
   auth: {
-    user: 'phanhuutoan.dev@outlook.com',
-    pass: 'Yasuoganktem20gg'
+    user: process.env.MAIL_SENDER,
+    pass: process.env.MAIL_SENDER_PASSWORD
   }
 });
 
 const mailOptions = (content, receiver) => {
   return {
-    from: 'phanhuutoan.dev@outlook.com',
+    from: process.env.MAIL_SENDER,
     to: receiver,
     subject: 'Reset code',
     html: content,
