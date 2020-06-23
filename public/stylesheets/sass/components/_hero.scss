@@ -18,6 +18,12 @@
     left: 0;
     background-color: rgba($color: #ffffff, $alpha: .3);
     width: 100%;
+
+    &--black {
+      position: fixed;
+      z-index: 10000;
+      background-color: rgba($color: #2f6445, $alpha: .9) !important;
+    }
   }
 
   &__header-content {
@@ -52,6 +58,10 @@
         color: $third-color;
         font-size: 1.2rem;
         font-weight: 500;
+
+        &.light {
+          color: white;
+        }
       }
 
       &::before {
@@ -64,6 +74,9 @@
         left: 0;
         transform: scaleX(0);
         transition: all .3s;
+        &.light {
+          background-color: white !important;
+        }
       }
 
       &:hover::before {

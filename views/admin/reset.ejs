@@ -9,6 +9,7 @@
         style="margin-bottom: 9rem;"
         v-if="page == ''"
         >
+    <div class="alert alert-danger" v-if ="error"> {{ error }} </div>    
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" name="email" v-model="email" required>
@@ -73,9 +74,12 @@
           console.log('SENDING EMAIL...');
           fetch(`/admin/reset/${this.email}`, {method: 'POST'})
             .then(res => {
-              if (res.status = 200) {
+              if (res.status === 200) {
                 console.log('DONE');
-                this.page = 'enter'
+                this.page = 'enter',
+                this.error = ''
+              } else {
+                this.error = 'This email is invalid'
               }
             })
             .catch(err => {

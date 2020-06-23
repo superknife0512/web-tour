@@ -1,0 +1,21 @@
+<%- include('includes/heading', {title: title}) %>
+<%- include('includes/navbar') %>
+  <div style="margin-bottom: 10rem;"></div>
+  <div class="container" style="margin-bottom: 8rem">
+    <div class="tours" id="tours">
+      <div class="myContainer">
+        <h3 class="primary-heading">Choice your awesome tour!</h3>
+        <p>Today the group will travel from Delhi to Agra. Once the capital of India, Agra boasts monuments
+          that epitomize the high point of Mughal architecture. This afternoon you will visit the Agra Fort
+          with its colossal walls and moat. The fort contains wonderful palaces in red sandstone and white
+          marble.</p>
+        <div class="tours__display">
+          <% tours.forEach(tour => { %>
+            <%- include('includes/tourCard.ejs', {tour}) %>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('includes/footing.ejs') %>

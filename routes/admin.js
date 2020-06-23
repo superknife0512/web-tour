@@ -24,6 +24,7 @@ router.post('/logout', authCtrl.logout);
 router.post('/reset/:email', authCtrl.postReset)
 router.post('/check-code', authCtrl.checkResetCode)
 router.post('/updatePassword', authCtrl.updatePassword)
+
 router.post('/newTour', authProtector, upload.single('img'), adminCtrl.postCreateTour)
 router.post('/editTour/:id', authProtector, upload.single('img'), adminCtrl.postEditTour)
 router.post('/deleteTour/:id', authProtector, adminCtrl.postDeleteTour)

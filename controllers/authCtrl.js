@@ -4,6 +4,20 @@ const Admin = require('../models/admin.model');
 const { uniqueString } = require('../utils/uniqueNumber');
 const { db } = require('../models/admin.model');
 
+const {transporter, mailOptions} = require('../utils/mailSender')
+
+async function sendingEmail(content, receiver) {
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions(content, receiver), (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(null)
+      }
+    })
+  })
+}
+
 exports.signupAdmin = async (req, res, next) => {
   const reqBody = req.body;
 
@@ -65,10 +79,19 @@ exports.getReset = async (req,res,next) => {
 exports.postReset = async (req,res,next) => {
   const email = req.params.email
   const dbUser = await Admin.findOne({email})
+  if (!dbUser) {
+    return res.status(203).json({error: 'Please enter a valid email'})
+  }
   const resetCode = uniqueString(8);
-  // FIXME:
-  // sendingEmail();
-  console.log('Send an email');
+  const error = await sendingEmail(
+    `<h2 style="background-color: #199acc; color: white; padding: 1.5rem">
+      ${resetCode}
+    </h2>`,
+    email
+  )
+  if (error) {
+    return next(error)
+  }
   dbUser.resetCode = resetCode;
   dbUser.expire = new Date(Date.now() + 3600 * 1000) 
   await dbUser.save();

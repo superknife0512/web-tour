@@ -35,7 +35,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('images',express.static(path.join(__dirname, 'public')));
+app.use('/userUpload', express.static(path.join(__dirname, 'userUpload')));
 app.use('/admin', express.static(path.join(__dirname, 'public')));
 app.use('/admin/editTour', express.static(path.join(__dirname, 'public')));
 app.use('/admin/userUpload', express.static(path.join(__dirname, 'userUpload')));

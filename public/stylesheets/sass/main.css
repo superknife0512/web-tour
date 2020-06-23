@@ -104,6 +104,12 @@
   width: 100%;
 }
 
+.hero__header--black {
+  position: fixed;
+  z-index: 10000;
+  background-color: rgba(47, 100, 69, 0.9) !important;
+}
+
 .hero__header-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,6 +153,10 @@
   font-weight: 500;
 }
 
+.hero__right li a.light {
+  color: white;
+}
+
 .hero__right li::before {
   content: "";
   height: .3rem;
@@ -159,6 +169,10 @@
           transform: scaleX(0);
   -webkit-transition: all .3s;
   transition: all .3s;
+}
+
+.hero__right li::before.light {
+  background-color: white !important;
 }
 
 .hero__right li:hover::before {

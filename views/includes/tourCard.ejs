@@ -1,0 +1,14 @@
+<div class="tours__card">
+  <div class="tours__heading">
+      <h4 class="tours__title"> <%= tour.title %> </h4>
+      <p class="tours__desc"> <%= tour.desc %> </p>
+  </div>
+  <img src="<%= tour.img %>" alt="<%= tour.title %>" class="tours__img">
+  <div class="tours__detail">
+    <h4>Discount up to <%= tour.discount %> <h4>
+    <h4>With price only: $<%= tour.price %> </h4>
+    <p>Tour for <%= tour.people %> people </p>
+    <p>With <%= tour.duration %> </p>
+    <button class="btn__join--secondary mt-4">Register now !</button>
+  </div>
+</div>

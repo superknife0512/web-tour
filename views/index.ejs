@@ -2,30 +2,30 @@
 
 <body>
   <div class="hero">
-    <div class="hero__header">
+    <nav class="hero__header">
       <div class="myContainer hero__header-content">
         <div class="hero__left">
           <img src="images/logo.png" alt="logo">
         </div>
         <ul class="hero__right">
           <li class="hero__item">
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li class="hero__item">
-            <a href="#">About</a>
+            <a href="/about">About</a>
           </li>
           <li class="hero__item">
-            <a href="#">Tours</a>
+            <a href="/tours">Tours</a>
           </li>
           <li class="hero__item">
-            <a href="#">Booking</a>
+            <a href="/booking">Booking</a>
           </li>
           <li class="hero__item hero__item--signin">
             <a href="/admin">Your account</a>
           </li>
         </ul>
       </div>
-    </div>
+    </nav>
     <div class="hero__heading">
       <h1 class="hero__title">
         Let's enjoy our tour
@@ -64,22 +64,11 @@
         with its colossal walls and moat. The fort contains wonderful palaces in red sandstone and white
         marble.</p>
       <div class="tours__display">
-        <div class="tours__card" v-for="tour in tours">
-          <div class="tours__heading">
-              <h4 class="tours__title"> {{ tour.title }} </h4>
-              <p class="tours__desc"> {{ tour.desc }} </p>
-          </div>
-          <img :src="tour.img" :alt="tour.title" class="tours__img">
-          <div class="tours__detail">
-            <h4>Discount up to {{ tour.discount }}%</h4>
-            <h4>With price only: ${{ tour.price }} </h4>
-            <p>Tour for {{ tour.people }} people </p>
-            <p>With {{ tour.duration }} days and {{ tour.duration - 1 }} nights </p>
-            <button class="btn__join--secondary mt-4">Register now !</button>
-          </div>
-        </div>
+        <% tours.forEach(tour => { %>
+          <%- include('includes/tourCard.ejs', {tour}) %>
+        <% }) %>
       </div>
-      <a href="#" class="btn__link">Learn more <span> &rarr; </span></a>
+      <a href="/tours" class="btn__link">Learn more <span> &rarr; </span></a>
     </div>
   </div>
 
@@ -105,39 +94,5 @@
     </div>
   </div>
 <script>
-  new Vue ({ 
-  el: '#tours',
-  data: {
-    tours: [
-      {
-        title: 'Da Nang Tour',
-        desc: 'Awesome tour from Quang Nam to Danang and more beautiful place',
-        discount: 45,
-        price: 300,
-        people: 2,
-        duration: 3,
-        img: './images/beach.jpg'
-      },
-      {
-        title: 'Hoi An Tour',
-        desc: 'Enjoy the ancient atmosphere at Hoi An with you awesome family',
-        discount: 40,
-        price: 350,
-        people: 3,
-        duration: 2,
-        img: './images/hoian.jpg'
-      },
-      {
-        title: 'Phong Nha Tour',
-        desc: 'Discover the deepest cave with our professional team',
-        discount: 30,
-        price: 540,
-        people: 2,
-        duration: 7,
-        img: './images/tamcoc.jpg'
-      },
-    ]
-  }
-})
 </script>
   <%- include('includes/footing.ejs') %>
