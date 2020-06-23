@@ -7,6 +7,10 @@
   font-weight: 700;
   position: relative;
   transition: all .2s;      
+  
+  &:focus {
+    outline: none;
+  }
 
   &:hover {
     transform: translateY(-.5rem);

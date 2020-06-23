@@ -9,6 +9,8 @@
     <h4>With price only: $<%= tour.price %> </h4>
     <p>Tour for <%= tour.people %> people </p>
     <p>With <%= tour.duration %> </p>
-    <button class="btn__join--secondary mt-4">Register now !</button>
+    <form action="/booking" method="GET">
+      <button class="btn__join--secondary mt-4">Register now !</button>
+    </form>
   </div>
 </div>

@@ -21,3 +21,11 @@ exports.getTours = async (req,res,next) => {
        tours
     });
 }
+
+exports.getBooking = async (req,res,next) => {
+    const tours = await Tour.find();
+    res.render('booking', { 
+       title: 'The Asian Tour',
+       tours
+    });
+}

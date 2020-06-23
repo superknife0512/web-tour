@@ -1,0 +1,42 @@
+<%- include('includes/heading', {title: title}) %>
+<%- include('includes/navbar') %>
+<div style="margin-bottom: 10rem;"></div>
+<div class="container" style="margin-bottom: 5rem">
+  <h3>Let's Join our tour</h3>
+  <hr>
+  <form action="#" id="booking">
+    <div class="form-group">
+      <label for="title">Your name</label>
+      <input type="text" class="form-control" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Your Email</label>
+      <input type="text" class="form-control" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Your phone</label>
+      <input type="text" class="form-control" name="phone" required>
+    </div>
+    <div class="form-group">
+      <label for="">Choose your tour</label>
+      <select name="tours" id="" class="form-control">
+        <% tours.forEach(tour => { %>
+          <option value="<%= tour._id %>"><%= tour.title %> - $<%= tour.price %></option>
+        <% }) %>
+      </select>
+    </div>
+    <button class="btn btn-primary" @click.prevent="register()">Register now!</button>
+  </form>
+</div>
+<script>
+  new Vue({
+    el: '#booking',
+    methods: {
+      register() {
+        alert('Thank you for your choice, we will contact you later');
+        location.reload()
+      }
+    }
+  })
+</script>
+<%- include('includes/footing.ejs') %>

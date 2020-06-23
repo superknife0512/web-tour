@@ -9,6 +9,10 @@
   transition: all .2s;
 }
 
+.btn__join--primary:focus, .btn__join--secondary:focus {
+  outline: none;
+}
+
 .btn__join--primary:hover, .btn__join--secondary:hover {
   -webkit-transform: translateY(-0.5rem);
           transform: translateY(-0.5rem);
