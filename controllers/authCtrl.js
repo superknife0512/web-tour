@@ -24,6 +24,7 @@ exports.signupAdmin = async (req, res, next) => {
   const name = reqBody.name;
   const email = reqBody.email;
   const password = reqBody.password;
+  const role = reqBody.role;
 
   const hashedPass = await bcrypt.hash(password, 10);
   const existedOne = await Admin.findOne({email});
@@ -38,6 +39,7 @@ exports.signupAdmin = async (req, res, next) => {
   const doc = new Admin({
     name,
     email,
+    role,
     password: hashedPass
   })
   await doc.save();

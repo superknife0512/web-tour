@@ -21,6 +21,10 @@ const adminSchema = new Schema({
   expire: {
     type: Date,
     default: ''
+  },
+  role: {
+    type: String,
+    required: true
   }
 });
 

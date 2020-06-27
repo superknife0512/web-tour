@@ -6,7 +6,11 @@
   <div class="admin-prod" style="margin: 5rem 0">
     <div class="d-flex">
       <h3 class="mr-4">Your Tours</h3>
-      <a href="/admin/newTour" class="btn btn-primary">Create new Tours</a>
+      <% if (user.role === 'admin') { %>
+        <a href="/admin/newTour" class="btn btn-primary">Create new Tours</a>
+      <% } else { %>
+        <h6>You are not admin, You cannot edit, create or delete these tours</h6>
+      <% } %>
     </div>
     <hr>
     <div class="admin-prod__display">
